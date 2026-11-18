@@ -1,0 +1,512 @@
+.dash-root {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+}
+
+.dash-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Top Bar */
+.dash-topbar {
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.dash-page-title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.dash-date {
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+  margin-left: 14px;
+}
+
+.dash-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Date navigation */
+.date-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.date-arrow {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.date-arrow:hover:not(:disabled) {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+.date-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.date-select {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color-scheme: dark; /* native calendar picker dark theme */
+  font-family: inherit;
+}
+
+.date-select::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+/* No-data panel */
+.no-data-panel {
+  background: #1a1a1a;
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 48px 24px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.no-data-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.no-data-title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.no-data-sub {
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+}
+
+.dash-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4CAF50;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.dash-live-text {
+  color: #4CAF50;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Content */
+.dash-content {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: auto;
+}
+
+/* KPI Cards */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 4px solid;
+  border-radius: 12px;
+  padding: 28px 18px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.kpi-value {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kpi-label {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.kpi-sub {
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* vs-yesterday change badge (stocks board jaisa) */
+.kpi-change {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.3px;
+}
+.kpi-change.up { color: #4CAF50; }
+.kpi-change.down { color: #F44336; }
+.kpi-change.flat { color: rgba(255,255,255,0.25); }
+/* Cycle-time input bar (sec/engine) - plan inhi se banta */
+.cycle-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+.cycle-bar-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+}
+/* Read-only cycle-time chip (Oracle se, admin-managed - edit nahi hota) */
+.cycle-readonly {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+.cycle-readonly-label { color: rgba(255,255,255,0.5); }
+.cycle-readonly-val {
+  min-width: 44px;
+  text-align: center;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.cycle-source {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.3px;
+}
+
+/* Plan badge (% + target) - cycle-time se */
+.kpi-plan {
+  margin-top: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.kpi-plan .kpi-change { margin-top: 0; }
+.kpi-target {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+}
+.kpi-change-sub {
+  color: rgba(255,255,255,0.3);
+  font-weight: 400;
+  font-size: 10px;
+}
+
+/* Section title */
+.section-title {
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+/* Shift Cards */
+.shift-row-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.shift-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shift-header {
+  background: #8B0000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shift-time {
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.8;
+  letter-spacing: 0;
+}
+
+.shift-total {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.shift-total span { color: rgba(255,255,255,0.7); }
+.shift-total strong { color: #4CAF50; }
+
+.shift-grid {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shift-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.shift-row span {
+  color: rgba(255,255,255,0.45);
+}
+
+.shift-row strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Chart Tabs */
+.chart-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.chart-tab {
+  padding: 6px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chart-tab:hover {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+}
+
+.chart-tab.active {
+  background: #8B0000;
+  border-color: #8B0000;
+  color: #fff;
+}
+
+/* Line / Bar toggle */
+.chart-type-toggle {
+  margin-left: auto;
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.chart-type-toggle button {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.chart-type-toggle button:hover { color: rgba(255,255,255,0.85); }
+.chart-type-toggle button.active {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+/* Trend year dropdown (Daily/Monthly) */
+.year-select {
+  margin-left: 10px;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.year-select:hover { border-color: rgba(255,255,255,0.35); }
+.year-select:focus { outline: none; border-color: #8B0000; }
+
+/* Series select/unselect checkboxes */
+.series-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+}
+.series-chk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  user-select: none;
+}
+.series-chk.on { color: rgba(255,255,255,0.85); }
+.series-chk input { cursor: pointer; accent-color: #8B0000; }
+.series-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Chart + averages side panel */
+.chart-with-avg {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+.chart-area { flex: 1; min-width: 0; }
+.avg-panel {
+  width: 160px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 12px;
+  align-self: center;
+}
+.avg-title {
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 6px;
+}
+.avg-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+.avg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.avg-name { color: rgba(255,255,255,0.55); flex: 1; }
+.avg-val { color: #fff; font-weight: 600; }
+
+/* Per-shift graph blocks (Shift tab) */
+.shift-graph-block {
+  margin-bottom: 18px;
+}
+.shift-graph-block:last-child { margin-bottom: 0; }
+
+.shift-graph-title {
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.shift-graph-title span {
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  margin-left: 8px;
+}
+
+/* Chart Box */
+.chart-box {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.chart-heading {
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chart-empty {
+  color: rgba(255,255,255,0.3);
+  font-size: 13px;
+  padding: 40px 0;
+  text-align: center;
+}
